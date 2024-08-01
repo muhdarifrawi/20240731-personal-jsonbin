@@ -1,16 +1,22 @@
 document.addEventListener("DOMContentLoaded", async function(){
     console.log("DOM Loaded");
     
-    let data = await loadData();
+    await loadData();
     // console.log(data);
-    renderData(data);
+
+
+    addBtn();
+    renderInfo();
 })
 
-function renderData(data){
+function renderInfo(){
+    console.log(originalData);
     let keyword="items";
     // console.log(data[keyword]);
-    let dataToRender = data[keyword];
+    let dataToRender = originalData.records[keyword];
 
+    let itemList = document.querySelector("#item-list");
+    itemList.innerHTML = "";
     
     for (each of dataToRender){
         console.log(each);
@@ -29,8 +35,20 @@ function renderData(data){
                             </button>
                         </td>
                     </tr>`
-        let itemList = document.querySelector("#item-list");
         itemList.innerHTML += info;
     }
+}
+
+function addInfo(){
+    keyword = "items"
+    let itemName = document.querySelector("#item-name").value;
+    let itemCost = document.querySelector("#item-cost").value;
+    addData(keyword, itemName,itemCost)
+    renderInfo();
+}
+
+function addBtn(){
+    let addBtn = document.querySelector("#add-btn");
+    addBtn.addEventListener("click", addInfo);
 }
 
