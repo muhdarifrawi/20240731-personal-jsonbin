@@ -12,7 +12,7 @@ function idKeeper(data){
             idBook.push(each.id);
         }
     }
-    console.log(idBook);
+    // console.log(idBook);
 }
 
 function generateId() {
