@@ -2,6 +2,7 @@ const JSON_BIN_URL = "https://api.jsonbin.io/v3";
 const JSON_BIN_ID = "66a9cdcce41b4d34e419881c";
 
 let originalData = {};
+let dataLength = {};
 
 async function loadData(){
     let response = await axios.get(`${JSON_BIN_URL}/b/${JSON_BIN_ID}/latest`);
@@ -10,6 +11,7 @@ async function loadData(){
     // return response.data.record;
     console.log(originalData)
     idKeeper(originalData.records)
+    checkInitialDataLength();
     // return originalData
 }
 
@@ -38,3 +40,11 @@ async function addData(keyword, itemName,itemCost){
 }
 
 // addData();
+
+function checkInitialDataLength(){
+    for(each in originalData.records){
+        console.log(originalData.records[each].length);
+        let currentInfoLength = originalData.records[each].length;
+        dataLength[each] = currentInfoLength
+    }
+}

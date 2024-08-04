@@ -4,7 +4,6 @@ document.addEventListener("DOMContentLoaded", async function(){
     await loadData();
     // console.log(data);
 
-
     addBtn();
     renderInfo();
 })
@@ -17,12 +16,19 @@ function renderInfo(){
 
     let itemList = document.querySelector("#item-list");
     itemList.innerHTML = "";
-    
+    let counter = 1;
     for (each of dataToRender){
+        console.log(counter, dataLength[keyword]);
+        let className = "";
+        let newPill = "";
+        if(counter>dataLength[keyword] && dataLength[keyword] != 0){
+            className =  ` class="table-success"`;
+            newPill = `<span class="badge text-bg-success">New!</span>`;
+        }
         console.log(each);
-        let info = `<tr>
+        let info = `<tr ${className}>
                         <td>${each.id}</td>
-                        <td>${each.name}</td>
+                        <td>${each.name} ${newPill}</td>
                         <td>${each.cost}</td>
                         <td>
                             <button type="button" class="btn btn-secondary" 
@@ -36,6 +42,7 @@ function renderInfo(){
                         </td>
                     </tr>`
         itemList.innerHTML += info;
+        counter += 1;
     }
 }
 
